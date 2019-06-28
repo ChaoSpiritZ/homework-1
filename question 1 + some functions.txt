@@ -1,0 +1,99 @@
+using System;
+				
+public class Book
+{
+	private string _bookTitle;
+	private string _publisher;
+	private string _author;
+	private int _pages;
+	private int _date;
+	
+	public Book(string bookTitle, string publisher, string author, int pages, int date)
+	{
+		_bookTitle = bookTitle;
+		_publisher = publisher;
+		_author = author;
+		_pages = pages;
+		_date = date;
+	}
+	
+	public void Details()
+	{
+		Console.WriteLine("Title: " + _bookTitle);
+		Console.WriteLine("Publisher: " + _publisher);
+		Console.WriteLine("Author: " + _author);
+		Console.WriteLine("Pages: " + _pages);
+		Console.WriteLine("Date: " + _date);
+	}
+	
+	public void Read()
+	{
+		Console.WriteLine("I have read {0} pages from the book '{1}'.",_pages,_bookTitle);
+	}
+}
+
+public class Page
+{
+	private int _pageNum;
+	private string _content;
+	private string _title;
+	private int _chapterNum;
+	private bool _isNewChapter;
+	
+	public Page(int pageNum, string content, string title, int chapterNum, bool isNewChapter)
+	{
+		_pageNum = pageNum;
+		_content = content;
+		_title = title;
+		_chapterNum = chapterNum;
+		_isNewChapter = isNewChapter;
+	}
+	
+	public void ReadPage()
+	{
+		Console.WriteLine("Page number {0}.", _pageNum);
+		if(_isNewChapter == true)
+		{
+			Console.Write("Chapter {0} - ", _chapterNum);
+			Console.WriteLine(_title);
+			Console.WriteLine(_content);
+		}
+		
+	}
+	
+	public void NextPage()
+	{
+		_pageNum++;
+		Console.WriteLine("You are currently reading page {0}.", _pageNum);
+	}
+	
+	public void JumpToPage()
+	{
+		Console.Write("Enter the page number you want to jump to: ");
+		_pageNum = int.Parse(Console.ReadLine());
+		Console.WriteLine("You are currently reading page {0}.", _pageNum);
+	}
+	
+	public void CurrentPage()
+	{
+		Console.WriteLine("You are currently reading page {0}.", _pageNum);
+	}
+}
+
+public class Program
+{
+	public static void Main()
+	{
+		int pageNum = 34;
+		string content = "the quick brown fox jumped over the lazy dog";
+		string bookTitle = "FoxDog";
+		int chapterNum = 3;
+		bool isNewChapter = true;
+		Page wazzap = new Page(pageNum, content, bookTitle, chapterNum, isNewChapter);
+		wazzap.CurrentPage();
+		Console.WriteLine("------------------------------------------------------------------------------------");
+		wazzap.ReadPage();
+		wazzap.NextPage();
+		wazzap.JumpToPage();
+	}
+}
